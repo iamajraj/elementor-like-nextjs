@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Elementor Like',
-  description: 'A app which act like elementor',
+  description: 'An app which act like elementor',
 };
 
 export default function RootLayout({

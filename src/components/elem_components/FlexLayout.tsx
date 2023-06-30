@@ -18,6 +18,7 @@ function FlexLayout({ className, editable }: Props) {
   };
 
   const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     const data_str = e.dataTransfer.getData('widgetData');
     if (!data_str) return;
     const parsed_data: DragData = JSON.parse(data_str);
@@ -41,6 +42,7 @@ function FlexLayout({ className, editable }: Props) {
 
   const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    e.stopPropagation();
   };
 
   return (

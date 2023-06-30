@@ -6,9 +6,10 @@ import DraggableComponent from './DraggableComponent';
 type Props = {
   name: string;
   nodeInfo: any;
+  Placeholder?: React.FC | null;
 };
 
-function DisplayComponent({ name, nodeInfo }: Props) {
+function DisplayComponent({ name, nodeInfo, Placeholder }: Props) {
   return (
     <div className="border-b pb-4 flex flex-col gap-4">
       <label>{name}</label>
@@ -16,7 +17,11 @@ function DisplayComponent({ name, nodeInfo }: Props) {
         componentName={name}
         defaultProps={nodeInfo.defaultProps}
       >
-        <nodeInfo.Node {...nodeInfo.defaultProps} />
+        {Placeholder ? (
+          <Placeholder />
+        ) : (
+          <nodeInfo.Node {...nodeInfo.defaultProps} />
+        )}
       </DraggableComponent>
     </div>
   );

@@ -14,10 +14,17 @@ function Elementor({ className }: Props) {
     <div className={cn(className, 'border-r shadow-lg p-5')}>
       <p className="border-b pb-4 font-bold mb-5">Elementor</p>
 
-      {/* Show all the components */}
-      {Object.entries(COMPONENTS).map(([name, nodeInfo]) => (
-        <DisplayComponent name={name} nodeInfo={nodeInfo} key={name} />
-      ))}
+      <div className="flex flex-col gap-4">
+        {/* Show all the components */}
+        {Object.entries(COMPONENTS).map(([name, nodeInfo]) => (
+          <DisplayComponent
+            name={name}
+            nodeInfo={nodeInfo}
+            key={name}
+            Placeholder={nodeInfo?.placeholder}
+          />
+        ))}
+      </div>
     </div>
   );
 }

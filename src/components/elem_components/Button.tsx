@@ -17,10 +17,7 @@ function Button(defaultProps: Props) {
 
   return (
     <button
-      className={cn(
-        'border border-gray-300 px-6 py-2 rounded-md shadow-md',
-        `${props?.editable ? 'cursor-grab' : ''}`
-      )}
+      className={cn('border border-gray-300 px-6 py-2 rounded-md shadow-md')}
     >
       {props?.text}
     </button>

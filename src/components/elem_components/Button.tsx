@@ -5,7 +5,6 @@ import { cn } from '../../libs/utils';
 
 type Props = {
   text?: string;
-  editable?: boolean;
 };
 
 function Button(defaultProps: Props) {

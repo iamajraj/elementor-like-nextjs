@@ -1,62 +1,23 @@
 'use client';
 
 import React, { HTMLProps, useState } from 'react';
-import { cn } from '../../libs/utils';
-import { COMPONENTS } from '../../config';
-import { DragData } from '../DraggableComponent';
+import Container from '../shared/Container';
 
 type Props = {
   className?: HTMLProps<HTMLElement>['className'];
-  editable?: boolean;
 };
 
-function FlexLayout({ className, editable }: Props) {
+function FlexLayout({ className }: Props) {
   const [components, setComponents] = useState<React.FC[]>();
 
-  const getComponent = (key: keyof typeof COMPONENTS) => {
-    return Object.entries(COMPONENTS).find(([name, _]) => name === key);
-  };
-
-  const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    const data_str = e.dataTransfer.getData('widgetData');
-    if (!data_str) return;
-    const parsed_data: DragData = JSON.parse(data_str);
-    const _componentData = getComponent(
-      parsed_data.name as keyof typeof COMPONENTS
-    );
-    if (!_componentData) return;
-
-    const _component = _componentData![1].Node;
-    (_component as any).defaultProps = _componentData![1].defaultProps;
-
-    setComponents((prev) => {
-      const components = [];
-      if (prev) {
-        components.push(...prev);
-      }
-      components.push(_component);
-      return components;
-    });
-  };
-
-  const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
   return (
-    <div
-      onDrop={onDrop}
-      onDragOver={onDragOver}
-      className={cn(className, 'flex-1 h-full')}
-    >
+    <Container setComponents={setComponents}>
       {components && components?.length >= 1 ? (
         components?.map((Component, i) => <Component key={i} />)
       ) : (
         <NothingComponent />
       )}
-    </div>
+    </Container>
   );
 }
 

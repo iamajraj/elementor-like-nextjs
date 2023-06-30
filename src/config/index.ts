@@ -3,18 +3,28 @@ import FlexLayout, {
   FlexLayoutPlaceholder,
 } from '../components/elem_components/FlexLayout';
 
-export const COMPONENTS = {
-  Button: {
+export const COMPONENTS = [
+  {
+    Name: 'Button',
     Node: Button,
-    defaultProps: {
+    props: {
       text: 'Demo Button',
-      editable: true,
     },
     placeholder: null,
+    editable: true,
   },
-  FlexLayout: {
+  {
+    Name: 'FlexLayout',
     Node: FlexLayout,
-    defaultProps: {},
+    props: {
+      children: [],
+    },
     placeholder: FlexLayoutPlaceholder,
+    editable: true,
   },
+];
+
+export type COMPONENT_INFO = {
+  Node: React.FC;
+  props: Record<string, any>;
 };

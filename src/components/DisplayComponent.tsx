@@ -2,25 +2,26 @@
 
 import React from 'react';
 import DraggableComponent from './DraggableComponent';
+import { COMPONENT_INFO } from '../config';
 
 type Props = {
   name: string;
-  nodeInfo: any;
+  componentInfo: COMPONENT_INFO;
   Placeholder?: React.FC | null;
 };
 
-function DisplayComponent({ name, nodeInfo, Placeholder }: Props) {
+function DisplayComponent({ name, componentInfo, Placeholder }: Props) {
   return (
     <div className="border-b pb-4 flex flex-col gap-4">
       <label>{name}</label>
       <DraggableComponent
         componentName={name}
-        defaultProps={nodeInfo.defaultProps}
+        defaultProps={componentInfo.props}
       >
         {Placeholder ? (
           <Placeholder />
         ) : (
-          <nodeInfo.Node {...nodeInfo.defaultProps} />
+          <componentInfo.Node {...componentInfo.props} />
         )}
       </DraggableComponent>
     </div>
